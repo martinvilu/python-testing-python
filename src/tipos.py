@@ -9,4 +9,4 @@ def fib(n: int) -> Iterator[int]:
 
 
 fib(10)
-fib("10")
+#fib("10")
