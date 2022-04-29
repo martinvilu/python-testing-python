@@ -21,7 +21,7 @@ jobs:
         pip install mypy
     - name: Analizando el código con pylint
       run: |
-        pylint --long-help $(git ls-files '*.py')
+        pylint -v $(git ls-files '*.py')
     - name: Analizando los tipos del programa con mypy
       run: |
         mypy --strict $(git ls-files '*.py') 
