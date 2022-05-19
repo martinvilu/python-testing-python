@@ -18,14 +18,10 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install pylint
-        pip install mypy
         pip install pytest pytest-cov
     - name: Analizando el código con pylint
       run: |
         pylint --fail-under 2 -v $(git ls-files '*.py')
-    - name: Analizando los tipos del programa con mypy
-      run: |
-        mypy --strict $(git ls-files '*.py')
     - name: Ejecutando los tests con cobertura
       run: |
         pytest -v --cov=src
