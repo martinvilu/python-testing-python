@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.8", "3.9", "3.10"]
+        python-version: ["3.7"]
     steps:
     - uses: actions/checkout@v3
     - name: Configurando Python ${{ matrix.python-version }}
@@ -19,9 +19,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install pylint
         pip install mypy
+        pip install pytest pytest-cov
     - name: Analizando el código con pylint
       run: |
         pylint -v $(git ls-files '*.py')
     - name: Analizando los tipos del programa con mypy
       run: |
-        mypy --strict $(git ls-files '*.py') 
+        mypy --strict $(git ls-files '*.py')
+    - name: Ejecutando los tests con cobertura
+      run: |
+        pytest -v
